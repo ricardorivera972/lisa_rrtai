@@ -1,43 +1,38 @@
-// === LÓGICA DE LISA ===
-
-// Contraseña correcta
-const PASSWORD = "LASER2025";
-
-// Validar contraseña y desbloquear interfaz
-function validatePassword() {
+// ===========================
+// LÓGICA DEL ACCESO
+// ===========================
+function checkPassword() {
     const passInput = document.getElementById("password");
-    const userInput = document.getElementById("userInput");
-    const sendBtn = document.getElementById("sendBtn");
-    const chat = document.getElementById("chat");
     const error = document.getElementById("error");
-
-    if (passInput.value === PASSWORD) {
-        // Desbloquear campos
-        userInput.disabled = false;
-        sendBtn.disabled = false;
-        passInput.disabled = true;
+    const chatBox = document.getElementById("chat");
+    
+    if (passInput.value === "LASER2025") {
+        chatBox.value = "Acceso concedido. Podés hablar con Lisa.\n";
         error.innerText = "";
-
-        // Mostrar acceso correcto
-        chat.value = "Acceso concedido. Podés hablar con Lisa.\n";
     } else {
         error.innerText = "Contraseña incorrecta.";
+        chatBox.value = "";
     }
 }
 
-// Enviar mensaje
+// ===========================
+// ENVÍO DE MENSAJES DEL CHAT
+// ===========================
 function sendMessage() {
-    const userInput = document.getElementById("userInput");
+    const input = document.getElementById("userInput");
     const chat = document.getElementById("chat");
 
-    if (userInput.value.trim() === "") return;
+    if (input.value.trim() === "") return;
 
-    // Agregar mensaje al chat
-    chat.value += "Usuario: " + userInput.value + "\n";
+    // Mostrar mensaje del usuario
+    chat.value += "Usuario: " + input.value + "\n";
 
-    // Borrar input
-    userInput.value = "";
+    // Respuesta provisoria de Lisa
+    chat.value += "Lisa: Estoy lista para ayudarte. (Esto cambiará cuando conectemos tu GPT)\n\n";
 
-    // Respuesta provisional
-    chat.value += "Lisa: (respuesta aparecerá cuando conectemos el backend)\n";
+    // Scroll automático
+    chat.scrollTop = chat.scrollHeight;
+
+    // Limpiar input
+    input.value = "";
 }
