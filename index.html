@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>RRT AI - Lisa Lasertec</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lisa Lasertec - Acceso</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<p>Lisa interface placeholder. Replace with full content later.</p>
+    <div class="container">
+        <div class="title">Lisa Lasertec — Acceso</div>
+
+        <div id="error" class="error-text"></div>
+
+        <div class="password-input">
+            <input type="password" id="password" placeholder="Contraseña" />
+            <button onclick="validatePassword()">Entrar</button>
+        </div>
+
+        <textarea id="chat" class="chat-box" placeholder="Esperando mensaje..." disabled></textarea>
+
+        <div class="send-area">
+            <input type="text" id="userInput" placeholder="Escribí tu mensaje..." disabled />
+            <button onclick="sendMessage()" disabled id="sendBtn">Enviar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
