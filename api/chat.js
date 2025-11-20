@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    const openaiResponse = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        messages: [
+        input: [
           { role: "system", content: "Sos Lisa, asistente de Lasertec." },
           { role: "user", content: message }
         ]
@@ -29,4 +29,15 @@ export default async function handler(req, res) {
 
     if (data.error) {
       console.error("OpenAI error:", data.error);
-      return res.st
+      return res.status(500).json({ error: "OpenAI request failed" });
+    }
+
+    const reply = data.output_text || "No pude generar respuesta.";
+
+    return res.status(200).json({ reply });
+
+  } catch (error) {
+    console.error("Server error:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
